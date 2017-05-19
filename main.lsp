@@ -23,6 +23,15 @@
 (defun Init_Game (&optional (RS (make-random-state t)))
 "Returns a random initial game board"
 (print "Init Game")
+(setf board (list (Make_Row RS) (Make_Row RS) (Make_Row RS) (Make_Row RS)) )
+)
+
+(defun Make_Row (RS)
+(print "Make_Row")
+'(1 2 3 4)
+
+
+
 )
 
 (defun Game_Over (G)
@@ -43,6 +52,7 @@
 (defun Display_Game (G)
 "Displays the actual board state"
 (print "Dispaly Game")
+(write-line "")
 (format t "~{~{~a~^ ~}~%~}" G)
 )
 
@@ -51,8 +61,8 @@
 (print "Congrats")
 )
 
-; (Play)
-(Display_Game '( (1 2 3 4)(5 6 7 8)(9 10 11 12)(13 14 15 16) ) )
+(Play)
+; (Display_Game '( (1 2 3 4)(5 6 7 8)(9 10 11 12)(13 14 15 16) ) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Tic-Tac-Toe Automatic Puzzle Solver
