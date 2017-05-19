@@ -51,16 +51,28 @@
 "Asks the user to specify the next move"
 (print "Choose_move")
 (write-line "")
-; (setq a (read))
-; (print "Got Input!")
-'3 ; TODO: implement input
+(setq action (read))
 )
 
 (defun Update_Game (G Move)
 "Updates the gameoard state according to the selected move"
 (print "Update Game")
 (write-line "")
-(write Move)
+(cond ((= 0 Move) (Flip_Action0 G))
+      ((= 1 Move) (Flip_Action1 G))
+
+)
+
+
+
+
+
+
+
+; (setq Action_Function (concatenate 'string "Flip_Action" (write-to-string Move)))
+
+; (write Action_Function)
+; (write Move)
 G
 )
 
@@ -349,8 +361,8 @@ G
 
 ; ################################ Play Game ################################
 
-; (Play)
-(Auto_Play)
+(Play)
+; (Auto_Play)
 
 ; ################################ UNIT TESTS ################################
 
