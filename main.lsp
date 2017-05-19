@@ -6,6 +6,8 @@
 
 (defun Play ()
 "This is the human-playable version of the game"
+  (defparameter *N_Steps* 0)
+  (defparameter *Sol_Path* '())
   (let (Game RndSt Move (StepCnt 0)) ; List of variables
     (setf RndState (make-random-state t) ; RndState is set to a random state
           Game (Init_Game RndState)) ; And passed into init_game which will return Game
@@ -32,8 +34,6 @@
 
 (defun Game_Over (G)
 "Checks whether the game reached its goal state"
-(print "Game Over Function")
-(write-line "")
 (if (= (length (Flatten G)) (Count_Positives (Flatten G))) T Nil)
 )
 
@@ -49,30 +49,28 @@
 
 (defun Choose_Move ()
 "Asks the user to specify the next move"
-(print "Choose_move")
-(write-line "")
 (setq action (read))
 )
 
 (defun Update_Game (G Move)
 "Updates the gameoard state according to the selected move"
-(print "Update Game")
-(write-line "")
 (cond ((= 0 Move) (Flip_Action0 G))
       ((= 1 Move) (Flip_Action1 G))
-
+      ((= 2 Move) (Flip_Action2 G))
+      ((= 3 Move) (Flip_Action3 G))
+      ((= 4 Move) (Flip_Action4 G))
+      ((= 5 Move) (Flip_Action5 G))
+      ((= 6 Move) (Flip_Action6 G))
+      ((= 7 Move) (Flip_Action7 G))
+      ((= 8 Move) (Flip_Action8 G))
+      ((= 9 Move) (Flip_Action9 G))
+      ((= 10 Move) (Flip_Action10 G))
+      ((= 11 Move) (Flip_Action11 G))
+      ((= 12 Move) (Flip_Action12 G))
+      ((= 13 Move) (Flip_Action13 G))
+      ((= 14 Move) (Flip_Action14 G))
+      ((= 15 Move) (Flip_Action15 G))
 )
-
-
-
-
-
-
-
-; (setq Action_Function (concatenate 'string "Flip_Action" (write-to-string Move)))
-
-; (write Action_Function)
-; (write Move)
 G
 )
 
@@ -100,8 +98,6 @@ G
 
 (defun Display_Game (G)
 "Displays the actual board state"
-(print "Display Game")
-(write-line "")
 (format t "~{~{~a~^ ~}~%~}" G)
 )
 
