@@ -99,8 +99,12 @@ G
 "Solves the game and displays the resulting solution path accordingly"
 (loop
   for i from 0 to 15
-  do (Flip_Only i Game))
+  do (Flip_Only i Game)
 )
+(Display_Game Game)
+
+)
+
 
 (defun Flip_Only (index G)
 "Flips only the box given by row and col by calling multiple flip actions and itself recursivly"
@@ -285,7 +289,7 @@ G
 
 (defun Flip_Action13 (G)
 (flip 2 1 G)
-(flip 2 3 G)
+(flip 2 2 G)
 (flip 3 0 G)
 (flip 3 1 G)
 )
@@ -330,7 +334,7 @@ G
 (defun Test_Flip_Action ()
 (setf Game (Init_Game (make-random-state t)))
 (Display_Game Game)
-(Flip_Action2 Game)
+(Flip_Action3 Game)
 (Display_Game Game)
 )
 
