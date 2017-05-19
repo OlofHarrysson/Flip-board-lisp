@@ -64,6 +64,18 @@
 G
 )
 
+(defun Get_Value_At_Index (G i)
+(nth (Get_Col_At_Index i) (nth (Get_Row_At_Index i) G))
+)
+
+(defun Get_Row_At_Index (i)
+(floor i 4)
+)
+
+(defun Get_Col_At_Index (i)
+(rem i 4)
+)
+
 (defun Flip (row col G)
 "Flips the marker at the position given by row and col"
 (setf (nth col (nth row G)) (- 1 (nth col (nth row G))))
@@ -99,7 +111,9 @@ G
 "Solves the game and displays the resulting solution path accordingly"
 (loop
   for i from 0 to 15
-  do (Flip_Only i Game)
+  ; do (Flip_Only i Game)
+  do (cond ((= 0 (Get_Value_At_Index Game i)) (Flip_Only i Game)))
+
 )
 (Display_Game Game)
 
@@ -309,6 +323,8 @@ G
 (flip 3 3 G)
 )
 
+; ################################ Play Game ################################
+
 ; (Play)
 (Auto_Play)
 
@@ -355,9 +371,25 @@ G
 (Display_Game Game)
 )
 
+(defun Test_Row_From_Index ()
+ (write (Get_Row_At_Index 4))
+)
+
+(defun Test_Col_From_Index ()
+ (write (Get_Col_At_Index 0))
+)
+
+(defun Test_Get_Value_At_Index ()
+ (setf Game (Init_Game (make-random-state t)))
+ (Display_Game Game)
+ (write (Get_Value_At_Index Game 0))
+)
+
 ; ################################ RUN UNIT TESTS ################################
 
 ; (Test_Flip_Action)
 ; (Test_Row_Col_To_Index)
 ; (Test_Flip_Only)
-
+; (Test_Row_From_Index)
+; (Test_Col_From_Index)
+; (Test_Get_Value_At_Index)
