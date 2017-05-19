@@ -51,12 +51,25 @@
 "Asks the user to specify the next move"
 (print "Choose_move")
 (write-line "")
+; (setq a (read))
+; (print "Got Input!")
+'3 ; TODO: implement input
 )
 
 (defun Update_Game (G Move)
 "Updates the gameoard state according to the selected move"
 (print "Update Game")
 (write-line "")
+(write Move)
+G
+)
+
+(defun Flip (row col G)
+"Flips the marker at the position given by row and col"
+(print "Flip")
+(write-line "")
+(setf (nth col (nth row G)) (- 1 (nth col (nth row G))))
+G
 )
 
 (defun Display_Game (G)
@@ -70,11 +83,6 @@
 "Displays some concluding message"
 (print "Congrats")
 )
-
-(Play)
-; (Display_Game '( (1 2 3 4)(5 6 7 8)(9 10 11 12)(13 14 15 16) ) )
-; (write (Game_Over (Init_Game (make-random-state t)))) ; Should write false
-; (write (Game_Over '( (1 1 1 1)(1 1 1 1)(1 1 1 1)(1 1 1 1) ) )) ; Should write true
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Tic-Tac-Toe Automatic Puzzle Solver
@@ -92,4 +100,34 @@
 (defun Auto_Play_Game (Game Steps)
 "Solves the game and displays the resulting solution path accordingly"
 )
+
+(defun Flip_Action0 ( G)
+"Flips the marker at the position given by row and col"
+(print "Flip Action0")
+(write-line "")
+
+
+
+
+(setf (nth col (nth row G)) (- 1 (nth col (nth row G))))
+G
+)
+
+
+
+
+
+; (Play)
+; (Display_Game '( (1 2 3 4)(5 6 7 8)(9 10 11 12)(13 14 15 16) ) )
+; (write (Game_Over (Init_Game (make-random-state t)))) ; Should write false
+; (write (Game_Over '( (1 1 1 1)(1 1 1 1)(1 1 1 1)(1 1 1 1) ) )) ; Should write true
+
+(setf board (Init_Game (make-random-state t)))
+(Display_Game board)
+; (Update_Game board 3)
+(Flip 0 0 board)
+(Flip 3 3 board)
+(Flip 2 1 board)
+(Display_Game board)
+
 
