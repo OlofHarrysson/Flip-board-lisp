@@ -190,6 +190,7 @@ G
       ((= index 3)
           (Flip_Action2 G)
           (Flip_Action7 G)
+          (Flip_Action3 G)
           (Flip_Only 6 G)
       )
 )
@@ -262,7 +263,7 @@ G
 
 (defun Flip_Action9 (G)
 (flip 1 0 G)
-(flip 1 3 G)
+(flip 1 2 G)
 (flip 2 1 G)
 (flip 3 0 G)
 )
@@ -347,7 +348,8 @@ G
 )
 
 (defun Test_Flip_Only ()
-(setf Game (Init_Game (make-random-state t)))
+; (setf Game (Init_Game (make-random-state t)))
+(setf Game '( (1 1 1 1)(1 1 1 1)(1 1 1 1)(1 1 1 1) ))
 (Display_Game Game)
 (Flip_Only 8 Game)
 (Display_Game Game)
