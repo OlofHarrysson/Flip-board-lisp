@@ -13,7 +13,6 @@
     (Display_Game Game)
     (loop
      (when (Game_Over G) (return))
-     (print "Is code here?")
      (setf Move (Choose_Move)
            G (Update_Game G Move)
            StepCnt (1+ StepCnt))
@@ -24,21 +23,16 @@
 (defun Init_Game (&optional (RS (make-random-state t)))
 "Returns a random initial game board"
 (print "Init Game")
-; (loop :repeat 4 :for x :in RS :collect x)
-; (loop
-;   for i from 1 to 4
-;   do (cons (1) ())
 )
 
 (defun Game_Over (G)
 "Checks whether the game reached its goal state"
-(write (if (null G) (T) (Nil)))
 (print "Game Over")
 )
 
 (defun Choose_Move ()
 "Asks the user to specify the next move"
-(print "Choose move")
+(print "Choose_move")
 )
 
 (defun Update_Game (G Move)
@@ -48,17 +42,18 @@
 
 (defun Display_Game (G)
 "Displays the actual board state"
-  (print "Display Game")
-  (format t "~{~{~a~^ ~}~%~}" G)
+(print "Dispaly Game")
+(format t "~{~{~a~^ ~}~%~}" G)
 )
 
 (defun Congratulations (Steps)
 "Displays some concluding message"
-(print "Congratulations")
+(print "Congrats")
 )
 
-(Play)
-;(Display_Game '( (1 2 3)(4 5 6)(7 8 9) ))
+; (Play)
+(Display_Game '( (1 2 3 4)(5 6 7 8)(9 10 11 12)(13 14 15 16) ) )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Tic-Tac-Toe Automatic Puzzle Solver
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
