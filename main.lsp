@@ -28,10 +28,7 @@
 
 (defun Make_Row (RS)
 (print "Make_Row")
-'(1 2 3 4)
-
-
-
+(list (random 2 RS) (random 2 RS) (random 2 RS) (random 2 RS) )
 )
 
 (defun Game_Over (G)
