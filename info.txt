@@ -1,0 +1,2 @@
+G on line 15 should be Game.
+Some other G exists.
