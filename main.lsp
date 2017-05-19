@@ -65,15 +65,19 @@ G
 )
 
 (defun Get_Value_At_Index (G i)
-(nth (Get_Col_At_Index i) (nth (Get_Row_At_Index i) G))
+(nth (Index_To_Col i) (nth (Index_To_Row i) G))
 )
 
-(defun Get_Row_At_Index (i)
+(defun Index_To_Row (i)
 (floor i 4)
 )
 
-(defun Get_Col_At_Index (i)
+(defun Index_To_Col (i)
 (rem i 4)
+)
+
+(defun Row_Col_To_Index (row col)
+(+ (* row 4) col)
 )
 
 (defun Flip (row col G)
@@ -109,14 +113,15 @@ G
 
 (defun Auto_Play_Game (Game Steps)
 "Solves the game and displays the resulting solution path accordingly"
+(defparameter *N_Steps* Steps)
+(defparameter *Sol_Path* '())
 (loop
   for i from 0 to 15
-  ; do (Flip_Only i Game)
   do (cond ((= 0 (Get_Value_At_Index Game i)) (Flip_Only i Game)))
-
 )
 (Display_Game Game)
-
+(print *N_Steps*)
+(print *Sol_Path*)
 )
 
 
@@ -211,8 +216,11 @@ G
 
 )
 
-(defun Row_Col_To_Index (row col)
-(+ (* row 4) col)
+
+
+(defun Inc_Step_And_Path (Action_Number)
+(setf *N_Steps* (+ 1 *N_Steps*))
+(setf *Sol_Path* (append *Sol_Path* (list Action_Number) ))
 )
 
 ; "Flip_Action performs the flip by calling flip for the actions indexes"
@@ -221,18 +229,22 @@ G
 (flip 0 1 G)
 (flip 1 0 G)
 (flip 1 1 G)
+(setf *N_Steps* (+ 1 *N_Steps*))
+(Inc_Step_And_Path 0)
 )
 
 (defun Flip_Action1 (G)
 (flip 0 0 G)
 (flip 0 1 G)
 (flip 1 1 G)
+(Inc_Step_And_Path 1)
 )
 
 (defun Flip_Action2 (G)
 (flip 0 2 G)
 (flip 0 3 G)
 (flip 1 2 G)
+(Inc_Step_And_Path 2)
 )
 
 (defun Flip_Action3 (G)
@@ -240,12 +252,14 @@ G
 (flip 0 3 G)
 (flip 1 2 G)
 (flip 1 3 G)
+(Inc_Step_And_Path 3)
 )
 
 (defun Flip_Action4 (G)
 (flip 0 0 G)
 (flip 1 0 G)
 (flip 1 1 G)
+(Inc_Step_And_Path 4)
 )
 
 (defun Flip_Action5 (G)
@@ -253,7 +267,7 @@ G
 (flip 0 2 G)
 (flip 1 1 G)
 (flip 2 0 G)
-
+(Inc_Step_And_Path 5)
 )
 
 (defun Flip_Action6 (G)
@@ -261,18 +275,21 @@ G
 (flip 0 3 G)
 (flip 1 2 G)
 (flip 2 1 G)
+(Inc_Step_And_Path 6)
 )
 
 (defun Flip_Action7 (G)
 (flip 0 3 G)
 (flip 1 2 G)
 (flip 1 3 G)
+(Inc_Step_And_Path 7)
 )
 
 (defun Flip_Action8 (G)
 (flip 2 0 G)
 (flip 2 1 G)
 (flip 3 0 G)
+(Inc_Step_And_Path 8)
 )
 
 (defun Flip_Action9 (G)
@@ -280,6 +297,7 @@ G
 (flip 1 2 G)
 (flip 2 1 G)
 (flip 3 0 G)
+(Inc_Step_And_Path 9)
 )
 
 (defun Flip_Action10 (G)
@@ -287,12 +305,14 @@ G
 (flip 1 3 G)
 (flip 2 2 G)
 (flip 3 1 G)
+(Inc_Step_And_Path 10)
 )
 
 (defun Flip_Action11 (G)
 (flip 2 2 G)
 (flip 2 3 G)
 (flip 3 3 G)
+(Inc_Step_And_Path 11)
 )
 
 (defun Flip_Action12 (G)
@@ -300,6 +320,7 @@ G
 (flip 2 1 G)
 (flip 3 0 G)
 (flip 3 1 G)
+(Inc_Step_And_Path 12)
 )
 
 (defun Flip_Action13 (G)
@@ -307,6 +328,7 @@ G
 (flip 2 2 G)
 (flip 3 0 G)
 (flip 3 1 G)
+(Inc_Step_And_Path 13)
 )
 
 (defun Flip_Action14 (G)
@@ -314,6 +336,7 @@ G
 (flip 2 2 G)
 (flip 3 2 G)
 (flip 3 3 G)
+(Inc_Step_And_Path 14)
 )
 
 (defun Flip_Action15 (G)
@@ -321,6 +344,7 @@ G
 (flip 2 3 G)
 (flip 3 2 G)
 (flip 3 3 G)
+(Inc_Step_And_Path 15)
 )
 
 ; ################################ Play Game ################################
@@ -372,11 +396,11 @@ G
 )
 
 (defun Test_Row_From_Index ()
- (write (Get_Row_At_Index 4))
+ (write (Index_To_Row 4))
 )
 
 (defun Test_Col_From_Index ()
- (write (Get_Col_At_Index 0))
+ (write (Index_To_Col 0))
 )
 
 (defun Test_Get_Value_At_Index ()
