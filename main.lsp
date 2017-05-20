@@ -8,9 +8,9 @@
 "This is the human-playable version of the game"
   (defparameter *N_Steps* 0)
   (defparameter *Sol_Path* '())
-  (let (Game RndSt Move (StepCnt 0)) ; List of variables
-    (setf RndState (make-random-state t) ; RndState is set to a random state
-          Game (Init_Game RndState)) ; And passed into init_game which will return Game
+  (let (Game RndSt Move (StepCnt 0))
+    (setf RndState (make-random-state t)
+          Game (Init_Game RndState))
     (format t "~%~5TStart state ~%~%")
     (Display_Game Game)
     (loop
@@ -24,7 +24,7 @@
 
 (defun Init_Game (&optional (RS (make-random-state t)))
 "Returns a random initial game board"
-(setf board (list (Make_Row RS) (Make_Row RS) (Make_Row RS) (Make_Row RS)) )
+(list (Make_Row RS) (Make_Row RS) (Make_Row RS) (Make_Row RS))
 )
 
 (defun Make_Row (RS)
@@ -49,7 +49,7 @@
 
 (defun Choose_Move ()
 "Asks the user to specify the next move"
-(setq action (read))
+(read)
 )
 
 (defun Update_Game (G Move)
@@ -98,6 +98,7 @@ G
 
 (defun Display_Game (G)
 "Displays the actual board state"
+(write-line "")
 (format t "~{~{~a~^ ~}~%~}" G)
 )
 
@@ -127,9 +128,10 @@ G
   for i from 0 to 15
   do (cond ((= 0 (Get_Value_At_Index Game i)) (Flip_Only i Game)))
 )
+(write-line "")
+(format t "~d ~d~%" "Number of steps needed to solve: " *N_Steps*)
+(format t "~d ~d~%" "Solution path: " *Sol_Path*)
 (Display_Game Game)
-(print *N_Steps*)
-(print *Sol_Path*)
 )
 
 
